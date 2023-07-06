@@ -8,6 +8,8 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'wakatime/vim-wakatime'
   use 'ThePrimeagen/harpoon'
+  use 'mbbill/undotree'
+  use 'tpope/vim-fugitive'
 
   use({ 'rose-pine/neovim', as = 'rose-pine',
   config = function()
