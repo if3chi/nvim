@@ -1,2 +1,3 @@
+require("src.packer")
 require("src.hotkeys")
-print("src")
+
