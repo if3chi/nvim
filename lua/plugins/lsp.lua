@@ -5,10 +5,11 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    {
-      "j-hui/fidget.nvim", -- Useful status updates for LSP.
-      opts = {},
-    },
+	-- Useful status updates for LSP.
+    { "j-hui/fidget.nvim",      opts = {} },
+    -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+    -- used for completion, annotations and signatures of Neovim apis
+    { "folke/neodev.nvim", opts = {} },
   },
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {

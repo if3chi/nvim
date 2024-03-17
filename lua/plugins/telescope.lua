@@ -64,6 +64,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			},
 		})
 
+		-- FIX: fzf not working
 		-- Enable telescope extensions, if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
