@@ -7,6 +7,6 @@ return {
 		"MunifTanjim/nui.nvim", -- "3rd/image.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<C-e>", "<cmd>Neotree filesystem reveal right toggle<CR>", { desc = "Open Explorer" })
+		vim.keymap.set("n", "<C-e>", "<cmd>Neotree reveal right toggle<cr>", { desc = "Open Explorer" })
 	end,
 }
