@@ -16,7 +16,7 @@ return {
 			scss = { "prettierd" },
 			graphql = { "prettierd" },
 			markdown = { "prettierd" },
-			php = { "php-cs-fixer", "phpstan" },
+			php = { "pint", "phpstan", "php-cs-fixer" },
 			python = { "isort", "black" },
 			["_"] = { "trim_whitespace" },
 		},

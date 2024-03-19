@@ -104,7 +104,8 @@ return {
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 			tsserver = {},
-			intelephense = {},
+			-- intelephense = {}, --for php
+			phpactor = {},
 			html = {},
 			cssls = {},
 			emmet_ls = {},
@@ -168,7 +169,7 @@ return {
 			"black",
 			"eslint_d",
 			"ruff",
-			"php-cs-fixer",
+			"pint",
 			"phpstan",
 		})
 		require("mason-tool-installer").setup({
