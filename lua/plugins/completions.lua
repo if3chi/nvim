@@ -17,12 +17,19 @@ return {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
-    "rafamadriz/friendly-snippets",
+    "hrsh7th/cmp-buffer",
+    {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
   },
   config = function()
     -- See `:help cmp`
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+
     luasnip.config.setup({})
 
     cmp.setup({
@@ -35,7 +42,7 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
-      completion = { completeopt = "menu,menuone,noinsert" },
+      completion = { completeopt = "menu,menuone,preview,noselect" },
 
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`

@@ -12,6 +12,10 @@ vim.opt.showmode = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.termguicolors = true -- True color support
+
 vim.opt.cursorline = true
+
+vim.keymap.set("n", "<leader>qq", vim.cmd.Ex, { desc = "Close Editor" })
 
 -- TODO: add vim key binding.
