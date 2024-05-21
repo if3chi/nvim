@@ -4,17 +4,22 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		"MunifTanjim/nui.nvim", -- "3rd/image.nvim",
+		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim",
 	},
-	config = function()
-		vim.keymap.set("n", "\\", "<cmd>Neotree reveal right toggle<cr>", { desc = "NeoTree reveal" })
-	end,
+	keys = { { "\\", "<cmd>Neotree reveal right toggle<cr>", mode = "", desc = "NeoTree reveal" } },
 	opts = {
 		filesystem = {
-			window = {
-				mappings = {
-					["\\"] = "close_window",
+			filtered_items = {
+				-- visible = true,
+				hide_dotfiles = false,
+				hide_gitignored = false,
+				hide_by_name = {
+					".github",
+					"package-lock.json",
+					"composer.lock",
 				},
+				never_show = { ".git" },
 			},
 		},
 	},
