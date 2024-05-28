@@ -10,8 +10,8 @@ g.maplocalleader = " "
 
 -- White characters --
 opt.smartindent = true -- reacts to syntax of code (e.g., C)
-opt.tabstop = 4 -- 1 tab = 4 columns
-opt.shiftwidth = 4 -- indentation rule (<< >>)
+opt.tabstop = 2 -- 1 tab = 4 columns
+opt.shiftwidth = 2 -- indentation rule (<< >>)
 opt.expandtab = true -- expand tab to spaces
 -- q: comment formatting; n: numbered lists; j: remove comment when joining lines; 1: don't break after one-letter word
 opt.formatoptions = "qnj1"
@@ -27,7 +27,7 @@ opt.relativenumber = true -- shows relative numbers
 
 opt.termguicolors = true -- True color support
 
-vim.keymap.set("n", "<leader>qq", vim.cmd.Ex, { desc = "Close Editor" })
+-- vim.keymap.set("n", "<leader>qq", vim.cmd.Ex, { desc = "Close Editor" })
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = "a"
@@ -36,7 +36,7 @@ opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 
 -- Character Limit Warning --
-opt.colorcolumn = "120"
+-- opt.colorcolumn = "120"
 
 -- Hidden Chars --
 opt.list = false
@@ -78,12 +78,8 @@ opt.smartcase = true -- case-sensitive when not all lower
 -- Path --
 opt.path:append("**") -- Enables recursive sub-directory searching
 
--- Scrolling --
-opt.scrolloff = 8
-opt.sidescrolloff = 8
-
 -- Sign Column
-opt.signcolumn = "yes:2"
+opt.signcolumn = "yes:1"
 
 -- Decrease update time
 opt.updatetime = 250
@@ -92,7 +88,7 @@ opt.timeoutlen = 300 -- time for a mapped sequence to complete
 -- Diagnostic config
 vim.diagnostic.config({
 	severity_sort = true,
-	virtual_text = false,
+	virtual_text = true,
 	float = {
 		source = "always",
 		border = "rounded",
