@@ -5,9 +5,6 @@ local opt = vim.opt
 -- g.node_host_prog = "/usr/bin/neovim-node-host"
 g.python3_host_prog = "/usr/bin/python3"
 
-g.mapleader = " "
-g.maplocalleader = " "
-
 -- White characters --
 opt.smartindent = true -- reacts to syntax of code (e.g., C)
 opt.tabstop = 2 -- 1 tab = 4 columns

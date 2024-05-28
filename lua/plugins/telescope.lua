@@ -85,7 +85,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, {
 			desc = "[S]earch [K]eymaps",
 		})
-		vim.keymap.set("n", "<leader>sf", builtin.find_files, {
+		vim.keymap.set("n", "<C-p>", builtin.find_files, {
 			desc = "[S]earch [F]iles",
 		})
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, {
@@ -133,12 +133,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		})
 
 		-- Shortcut for searching your neovim configuration files
-		vim.keymap.set("n", "<leader>sn", function()
+		vim.keymap.set("n", "<leader>snf", function()
 			builtin.find_files({
 				cwd = vim.fn.stdpath("config"),
 			})
 		end, {
-			desc = "[S]earch [N]eovim files",
+			desc = "[S]earch [N]eovim [F]iles",
 		})
 	end,
 }
