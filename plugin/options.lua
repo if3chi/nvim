@@ -16,6 +16,7 @@ opt.breakindent = true -- indent when breaking lines
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.showmode = false
+opt.title = true
 
 -- Line numbers --
 opt.number = true
