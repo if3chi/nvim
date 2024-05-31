@@ -34,6 +34,7 @@ return {
      	{ action = function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config"), }) end,
 																                          desc = " Config", icon = " ", key = "c" },
 			{ action = "Lazy",                               	  desc = " Lazy", icon = "󰒲 ", key = "l" },
+			{ action = "checkhealth",                        	  desc = " Check health", icon = " ", key = "h" },
 			{ action = "qa",                                  	desc = " Quit", icon = " ", key = "q" },
         },
 				footer = function()
