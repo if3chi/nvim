@@ -3,7 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
-			-- @todo: configure plugin
+			-- TODO: configure plugin
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"nvim-treesitter/nvim-treesitter-context",
 		},
@@ -30,6 +30,7 @@ return {
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 			---@diagnostic disable-next-line: inject-field
+			-- TODO: configure locals and indents
 			parser_config.blade = {
 				install_info = {
 					url = "https://github.com/EmranMR/tree-sitter-blade",
