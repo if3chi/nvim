@@ -10,7 +10,7 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "tokyonight",
+				-- theme = "tokyonight",
 				disabled_filetypes = {
 					statusline = { "dashboard", "alpha", "starter", "neo-tree" },
 				},
