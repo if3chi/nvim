@@ -4,17 +4,6 @@ local function set_theme(theme)
 	vim.cmd("colorscheme " .. theme)
 end
 
-function M.onedark()
-	require("onedark").setup({
-		highlights = {
-			Comment = { italic = true },
-			Directory = { bold = true },
-			ErrorMsg = { italic = true, bold = true },
-		},
-	})
-	set_theme("onedark")
-end
-
 function M.rose_pine()
 	require("rose-pine").setup({
 		variant = "moon", -- auto, main, moon, or dawn

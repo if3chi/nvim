@@ -1,6 +1,5 @@
 local themes = {
 	["tokyonight"] = "folke/tokyonight.nvim",
-	["onedark"] = "olimorris/onedarkpro.nvim",
 	["rose-pine"] = "rose-pine/neovim",
 	["cyberdream"] = "scottmckendry/cyberdream.nvim",
 	["gruvbox-material"] = "sainnhe/gruvbox-material",

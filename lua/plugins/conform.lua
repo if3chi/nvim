@@ -28,6 +28,7 @@ return {
 			scss = { "prettierd" },
 			graphql = { "prettierd" },
 			markdown = { "prettierd" },
+			blade = { "blade-formatter" },
 			php = { "pint", "phpstan", "php-cs-fixer" },
 			python = { "isort", "black" },
 			["_"] = { "trim_whitespace" },
