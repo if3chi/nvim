@@ -3,9 +3,15 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
-			-- TODO: configure plugin
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"nvim-treesitter/nvim-treesitter-context",
+			{ "nvim-treesitter/nvim-treesitter-textobjects" }, -- Syntax aware text-objects
+			{
+				"nvim-treesitter/nvim-treesitter-context", -- Show code context
+				opts = {
+					enable = true,
+					mode = "topline",
+					line_numbers = true,
+				},
+			},
 		},
 		opts = {
 			textobjects = { -- 'nvim-treesitter/nvim-treesitter-textobjects',
@@ -56,6 +62,15 @@ return {
 					"php",
 					"php_only",
 					"python",
+					"dockerfile",
+					"gitignore",
+					"go",
+					"gomod",
+					"gosum",
+					"gowork",
+					"sql",
+					"yaml",
+					"json",
 				},
 				auto_install = true,
 				highlight = { enable = true },

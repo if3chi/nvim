@@ -13,24 +13,34 @@ return {
 				end
 				return "make install_jsregexp"
 			end)(),
-		},
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-buffer",
-		{
-			"rafamadriz/friendly-snippets",
+			dependencies = { "rafamadriz/friendly-snippets" },
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end,
 		},
+		{ "saadparwaiz1/cmp_luasnip", enabled = true },
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
+		"onsails/lspkind-nvim",
 	},
 	config = function()
 		-- See `:help cmp`
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		local lspkind = require("lspkind")
+		local types = require("luasnip.util.types")
 
-		luasnip.config.setup({})
+		luasnip.config.setup({
+			ext_opts = {
+				[types.choiceNode] = {
+					active = { virt_text = { { "⇥", "GruvboxRed" } } },
+				},
+				[types.insertNode] = {
+					active = { virt_text = { { "⇥", "GruvboxBlue" } } },
+				},
+			},
+		})
 
 		cmp.setup({
 			snippet = {
@@ -49,8 +59,16 @@ return {
 			--
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 			mapping = cmp.mapping.preset.insert({
-				-- Select the [n]ext item
-				["<tab>"] = cmp.mapping.select_next_item(),
+				-- Select the [n]ext item or jump to next completion.
+				["<tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 				-- Select the [p]revious item
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 
@@ -88,6 +106,13 @@ return {
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
+			},
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = "symbol_text",
+					maxwidth = 70,
+					show_labelDetails = true,
+				}),
 			},
 		})
 	end,
