@@ -40,6 +40,9 @@ opt.clipboard = "unnamedplus"
 opt.list = false
 opt.listchars = { tab = "» ", trail = "⋅", nbsp = "␣", eol = "↴" }
 
+-- remove tilde from end of line
+opt.fillchars = { eob = " " }
+
 -- Scrolling --
 opt.scrolloff = 8
 opt.sidescrolloff = 8
