@@ -37,7 +37,7 @@ return {
 
 			---@diagnostic disable-next-line: inject-field
 			-- TODO: configure locals and indents
-			parser_config.blade = {
+			parser_config["blade"] = {
 				install_info = {
 					url = "https://github.com/EmranMR/tree-sitter-blade",
 					files = { "src/parser.c" },
@@ -71,6 +71,9 @@ return {
 					"sql",
 					"yaml",
 					"json",
+					"regex",
+					"tsx",
+					"typescript",
 				},
 				auto_install = true,
 				highlight = { enable = true },
@@ -80,7 +83,6 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		event = "VeryLazy",
-		opts = {},
+		event = { "BufReadPre", "BufNewFile" },
 	},
 }
