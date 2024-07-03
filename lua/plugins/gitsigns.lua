@@ -1,5 +1,6 @@
 return {
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
+	{ "tpope/vim-sleuth" },
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
