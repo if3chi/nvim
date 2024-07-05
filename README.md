@@ -2,5 +2,5 @@
 
 clone the repo:
 
-  ` git clone https://github.com/if3chi/neo-config.git ~/.config/nvim `
+  ` git clone https://github.com/if3chi/nvim.git ~/.config/nvim `
 
