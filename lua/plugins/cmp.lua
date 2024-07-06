@@ -24,6 +24,7 @@ return {
 		"hrsh7th/cmp-buffer",
 		"onsails/lspkind-nvim",
 		"hrsh7th/cmp-emoji",
+		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		-- See `:help cmp`

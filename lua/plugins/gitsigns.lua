@@ -6,12 +6,21 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			signs = {
-				add = { text = "▎" },
-				change = { text = "▎" },
+				add = { text = "┃" },
+				change = { text = "┃" },
 				delete = { text = "" },
 				topdelete = { text = "" },
 				changedelete = { text = "▎" },
-				untracked = { text = "▎" },
+				untracked = { text = "┆" },
+			},
+			attach_to_untracked = true,
+			current_line_blame = true,
+			current_line_blame_opts = {
+				virt_text = true,
+				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+				delay = 1000,
+				ignore_whitespace = false,
+				virt_text_priority = 100,
 			},
 			on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
@@ -48,7 +57,7 @@ return {
 					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "reset git hunk" })
 				-- normal mode
-				map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
+				map("n", "<leader>hS", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
 				map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
 				map("n", "<leader>hs", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
 				map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "git [u]ndo stage hunk" })
@@ -60,7 +69,6 @@ return {
 					gitsigns.diffthis("@")
 				end, { desc = "git [D]iff against last commit" })
 				-- Toggles
-				-- TODO: set show git toggle_current_line_blame on by default
 				map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
 				map("n", "<leader>tD", gitsigns.toggle_deleted, { desc = "[T]oggle git show [D]eleted" })
 			end,
