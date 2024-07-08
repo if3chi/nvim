@@ -8,8 +8,10 @@ return {
 				"nvim-treesitter/nvim-treesitter-context", -- Show code context
 				opts = {
 					enable = true,
-					mode = "topline",
-					line_numbers = true,
+					max_lines = 7,
+					min_window_height = 15,
+					mode = "cursor",
+					multiline_threshold = 10,
 				},
 			},
 		},
@@ -18,16 +20,6 @@ return {
 				select = {
 					enable = true,
 					lookahead = true,
-					keymaps = {
-						["if"] = "@function.inner",
-						["af"] = "@function.outer",
-						["ic"] = "@class.inner",
-						["ac"] = "@class.outer",
-						["il"] = "@loop.inner",
-						["al"] = "@loop.outer",
-						["ia"] = "@parameter.inner",
-						["aa"] = "@parameter.outer",
-					},
 				},
 			},
 		},
@@ -76,7 +68,10 @@ return {
 					"typescript",
 				},
 				auto_install = true,
-				highlight = { enable = true },
+				highlight = {
+					enable = true,
+					use_languagetree = true,
+				},
 				indent = { enable = true },
 			}))
 		end,

@@ -25,6 +25,7 @@ return {
 		"onsails/lspkind-nvim",
 		"hrsh7th/cmp-emoji",
 		"neovim/nvim-lspconfig",
+		"hrsh7th/cmp-cmdline",
 	},
 	config = function()
 		-- See `:help cmp`
@@ -61,23 +62,36 @@ return {
 			--
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 			mapping = cmp.mapping.preset.insert({
+				["<C-d>"] = cmp.mapping.scroll_docs(-4),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-e>"] = cmp.mapping.close(),
 				-- Select the [n]ext item or jump to next completion.
 				["<tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif luasnip.locally_jumpable(1) then
+					elseif luasnip.expand_or_jumpable() then
 						luasnip.jump(1)
 					else
 						fallback()
 					end
 				end, { "i", "s" }),
 				-- Select the [p]revious item
-				["<C-p>"] = cmp.mapping.select_prev_item(),
-
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 				-- Accept ([y]es) the completion.
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<CR>"] = cmp.mapping.confirm({
+					behavior = cmp.ConfirmBehavior.Insert,
+					select = true,
+				}),
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
@@ -108,6 +122,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
+				{ name = "vsnip" },
 				{ name = "emoji" },
 			},
 			formatting = {

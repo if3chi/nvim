@@ -1,5 +1,6 @@
 local g = vim.g
 local opt = vim.opt
+local o = vim.o
 
 -- Faster loading for providers
 -- g.node_host_prog = "/usr/bin/neovim-node-host"
@@ -22,6 +23,7 @@ opt.title = true
 opt.number = true
 opt.cursorline = true -- shows current line
 opt.relativenumber = true -- shows relative numbers
+opt.numberwidth = 2
 
 opt.termguicolors = true -- True color support
 
