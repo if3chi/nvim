@@ -125,12 +125,27 @@ return {
 				{ name = "vsnip" },
 				{ name = "emoji" },
 			},
+			---@diagnostic disable-next-line: missing-fields
 			formatting = {
 				format = lspkind.cmp_format({
 					mode = "symbol_text",
 					maxwidth = 70,
 					show_labelDetails = true,
+					ellipsis_char = "...",
 				}),
+			},
+		})
+
+		vim.diagnostic.config({
+			-- update_in_insert = true,
+			float = {
+				focusable = false,
+				style = "minimal",
+				border = "rounded",
+				---@diagnostic disable-next-line: assign-type-mismatch
+				source = "always",
+				header = "",
+				prefix = "",
 			},
 		})
 	end,

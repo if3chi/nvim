@@ -83,6 +83,7 @@ opt.path:append("**") -- Enables recursive sub-directory searching
 
 -- Sign Column
 opt.signcolumn = "yes:1"
+opt.isfname:append("@-@")
 
 -- Decrease update time
 opt.updatetime = 250

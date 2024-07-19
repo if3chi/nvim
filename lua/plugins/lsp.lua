@@ -10,8 +10,12 @@ return {
 		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
 		{ "folke/neodev.nvim", opts = {} },
+		"hrsh7th/cmp-nvim-lsp",
+		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
+		require("fidget").setup({})
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", {
 				clear = true,
@@ -24,28 +28,30 @@ return {
 					})
 				end
 
+				local builtin = require("telescope.builtin")
+
 				--  To jump back, press <C-T>.
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
 
 				-- Find references for the word under your cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gr", builtin.lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
 				--  the definition of its *type*, not where it was *defined*.
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+				map("<leader>D", builtin.lsp_type_definitions, "Type [D]efinition")
 
 				-- Fuzzy find all the symbols in your current document.
 				--  Symbols are things like variables, functions, types, etc.
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
 
 				-- Fuzzy find all the symbols in your current workspace
 				--  Similar to document symbols, except searches over your whole project.
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 				-- Rename the variable under your cursor
 				--  Most Language Servers support renaming across files, etc.
@@ -62,6 +68,8 @@ return {
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+				map("<leader>rs", "<cmd>LspRestart<CR>", "Restart")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.server_capabilities.documentHighlightProvider then
@@ -182,7 +190,23 @@ return {
 		--    :Mason
 		--
 		--  You can press `g?` for help in this menu
-		require("mason").setup()
+		require("mason").setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
+
+		-- Change the Diagnostic symbols in the sign column (gutter)
+		-- (not in youtube nvim video)
+		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+		end
 
 		-- You can add other tools here that you want Mason to install
 		-- for you, so that they are available from within Neovim.
@@ -200,6 +224,7 @@ return {
 			"blade-formatter",
 			"shellcheck",
 			"shfmt",
+			"gopls",
 		})
 		require("mason-tool-installer").setup({
 			ensure_installed = ensure_installed,

@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects" }, -- Syntax aware text-objects
 			{
@@ -14,6 +15,7 @@ return {
 					multiline_threshold = 10,
 				},
 			},
+			"windwp/nvim-ts-autotag",
 		},
 		opts = {
 			textobjects = { -- 'nvim-treesitter/nvim-treesitter-textobjects',
@@ -73,11 +75,17 @@ return {
 					use_languagetree = true,
 				},
 				indent = { enable = true },
+				auto_tag = { enable = true },
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<C-Space>",
+						node_incremental = "<C-Space>",
+						scope_incremental = false,
+						node_decremental = "<bs>",
+					},
+				},
 			}))
 		end,
-	},
-	{
-		"windwp/nvim-ts-autotag",
-		event = { "BufReadPre", "BufNewFile" },
 	},
 }

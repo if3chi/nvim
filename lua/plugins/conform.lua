@@ -1,6 +1,6 @@
 return {
 	"stevearc/conform.nvim",
-	event = "InsertEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	lazy = true,
 	keys = {
 		{
@@ -8,7 +8,7 @@ return {
 			function()
 				require("conform").format({ async = false, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = { "n", "v" },
 			desc = "[F]ormat buffer",
 		},
 	},
@@ -40,7 +40,8 @@ return {
 			-- languages here or re-enable it for the disabled ones.
 			local disable_filetypes = { c = true, cpp = true }
 			return {
-				timeout_ms = 2000,
+				async = false,
+				timeout_ms = 1000,
 				lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 			}
 		end,

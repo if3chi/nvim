@@ -7,6 +7,8 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VeryLazy",
 	config = function()
+		local lazy_status = require("lazy.status")
+
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
@@ -18,21 +20,14 @@ return {
 			sections = {
 				lualine_c = { { "filename" }, { maximize_status } },
 				lualine_x = {
+					{
+						lazy_status.updates,
+						cond = lazy_status.has_updates,
+						color = { fg = "#ff9e64" },
+					},
+					{ "encoding" },
+					{ "fileformat" },
 					{ "filetype" },
-					{
-						require("noice").api.status.mode.get,
-						cond = require("noice").api.status.mode.has,
-						color = {
-							fg = "#ff9e64",
-						},
-					},
-					{
-						require("noice").api.status.search.get,
-						cond = require("noice").api.status.search.has,
-						color = {
-							fg = "#ff9e64",
-						},
-					},
 				},
 			},
 		})

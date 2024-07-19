@@ -12,6 +12,8 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
+	change_detection = { notify = false },
+	checker = { enabled = true, notify = false },
 	spec = { -- import/override with your plugins
 		{
 			import = "plugins",
