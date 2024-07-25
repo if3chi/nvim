@@ -5,6 +5,7 @@ local themes = {
 	["gruvbox-material"] = "sainnhe/gruvbox-material",
 	["kanagawa"] = "rebelot/kanagawa.nvim",
 	["monokai-pro"] = "loctvl842/monokai-pro.nvim",
+	["catppuccin"] = "catppuccin/nvim",
 }
 
 local selected_theme = "rose-pine" -- Change this to switch themes

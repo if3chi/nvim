@@ -13,10 +13,18 @@ return {
 				end
 				return "make install_jsregexp"
 			end)(),
-			dependencies = { "rafamadriz/friendly-snippets" },
-			config = function()
-				require("luasnip.loaders.from_vscode").lazy_load()
-			end,
+			dependencies = {
+				"garymjr/nvim-snippets",
+				opts = {
+					friendly_snippets = true,
+				},
+				dependencies = {
+					"rafamadriz/friendly-snippets",
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
+				},
+			},
 		},
 		{ "saadparwaiz1/cmp_luasnip", enabled = true },
 		"hrsh7th/cmp-nvim-lsp",

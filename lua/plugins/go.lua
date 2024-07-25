@@ -19,9 +19,9 @@ return {
 					["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "double" }),
 					["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "round" }),
 				},
-				goimports = "goimports",
-				gofmt = "gopls",
-				max_line_len = 80,
+				-- goimports = "goimports",
+				-- gofmt = "gopls",
+				-- max_line_len = 80,
 			},
 		})
 
