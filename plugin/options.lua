@@ -46,8 +46,8 @@ opt.listchars = { tab = "» ", trail = "⋅", nbsp = "␣", eol = "↴" }
 opt.fillchars = { eob = " " }
 
 -- Scrolling --
-opt.scrolloff = 8
-opt.sidescrolloff = 8
+opt.scrolloff = 12
+opt.sidescrolloff = 12
 
 -- Session Options --
 opt.sessionoptions = { "curdir", "folds", "tabpages", "winsize", "winpos" }

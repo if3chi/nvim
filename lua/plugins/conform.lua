@@ -1,14 +1,14 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	lazy = true,
+	event = { "BufWritePre" },
+	cmd = { "ConformInfo" },
 	keys = {
 		{
 			"<leader>f",
 			function()
 				require("conform").format({ async = false, lsp_fallback = true })
 			end,
-			mode = { "n", "v" },
+			mode = "",
 			desc = "[F]ormat buffer",
 		},
 	},
@@ -16,22 +16,22 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			javascript = { "prettierd", "prettier", "eslint_d" },
-			javascriptreact = { "prettierd", "prettier", "eslint_d" },
+			javascript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+			javascriptreact = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
 			json = { "prettierd" },
 			jsonc = { "prettierd" },
 			yaml = { "prettierd" },
-			typescript = { "prettierd", "prettier", "eslint_d" },
-			typescriptreact = { "prettierd", "prettier", "eslint_d" },
+			typescript = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", "eslint_d", stop_after_first = true },
 			html = { "prettierd" },
 			ejs = { "prettierd" },
 			css = { "prettierd" },
 			scss = { "prettierd" },
 			graphql = { "prettierd" },
 			markdown = { "prettierd" },
-			blade = { "blade-formatter", "rustywind" },
-			php = { "pint", "phpstan", "php-cs-fixer" },
-			python = { "isort", "black" },
+			blade = { "blade-formatter", "rustywind", stop_after_first = true },
+			php = { "pint", "phpstan", "php-cs-fixer", stop_after_first = true },
+			python = { "isort", "black", stop_after_first = true },
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = function(bufnr)

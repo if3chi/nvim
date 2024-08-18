@@ -1,5 +1,9 @@
 local set = vim.keymap.set
 
+-- Move stuff up and down in visual mode
+set("v", "J", ":m '>+1<CR>gv=gv")
+set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Save file
 set("n", "<C-s>", "<cmd>w<cr>", { noremap = true, silent = true, desc = "[S]ave file" })
 set("i", "<C-s>", "<Esc><cmd>w<cr>a", { noremap = true, silent = true, desc = "[S]ave file" })

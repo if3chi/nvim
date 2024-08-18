@@ -13,6 +13,10 @@ return {
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end, { desc = "Toggle [H]arpoon List" })
 
+		vim.keymap.set("n", "<M-e>", function()
+			harpoon.ui:toggle_quick_menu(harpoon:list("term"))
+		end)
+
 		-- Set <space>1..<space>5 be my shortcuts to moving to the files
 		for _, idx in ipairs({ 1, 2, 3, 4, 5 }) do
 			vim.keymap.set("n", string.format("<space>%d", idx), function()

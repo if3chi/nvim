@@ -40,39 +40,52 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
-		local types = require("luasnip.util.types")
+		-- local types = require("luasnip.util.types")
 
-		luasnip.config.setup({
-			ext_opts = {
-				[types.choiceNode] = {
-					active = { virt_text = { { "⇥", "GruvboxRed" } } },
-				},
-				[types.insertNode] = {
-					active = { virt_text = { { "⇥", "GruvboxBlue" } } },
-				},
-			},
-		})
+		-- luasnip.config.setup({
+		-- 	ext_opts = {
+		-- 		[types.choiceNode] = {
+		-- 			active = { virt_text = { { "⇥", "GruvboxRed" } } },
+		-- 		},
+		-- 		[types.insertNode] = {
+		-- 			active = { virt_text = { { "⇥", "GruvboxBlue" } } },
+		-- 		},
+		-- 	},
+		-- })
+		lspkind.init({})
+		luasnip.config.setup({})
 
 		cmp.setup({
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
+			---@diagnostic disable-next-line: missing-fields
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = "symbol_text",
+					maxwidth = 70,
+					show_labelDetails = true,
+					ellipsis_char = "...",
+					before = function(_, vim_item)
+						return vim_item
+					end,
+				}),
 			},
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
 			},
-			completion = { completeopt = "menu,menuone,preview,noselect" },
+			completion = { completeopt = "menu,menuone,noinsert" },
 
 			-- For an understanding of why these mappings were
 			-- chosen, you will need to read `:help ins-completion`
 			--
 			-- No, but seriously. Please read `:help ins-completion`, it is really good!
 			mapping = cmp.mapping.preset.insert({
-				["<C-d>"] = cmp.mapping.scroll_docs(-4),
+
+				-- Scroll the documentation window [b]ack / [f]orward
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
+
 				["<C-e>"] = cmp.mapping.close(),
+
 				-- Select the [n]ext item or jump to next completion.
 				["<tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
@@ -105,55 +118,19 @@ return {
 				--  Generally you don't need this, because nvim-cmp will display
 				--  completions whenever it has completion options available.
 				["<C-Space>"] = cmp.mapping.complete({}),
-
-				-- Think of <c-l> as moving to the right of your snippet expansion.
-				--  So if you have a snippet that's like:
-				--  function $name($args)
-				--    $body
-				--  end
-				--
-				-- <c-l> will move you to the right of each of the expansion locations.
-				-- <c-h> is similar, except moving you backwards.
-				["<C-l>"] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
-						luasnip.expand_or_jump()
-					end
-				end, { "i", "s" }),
-				["<C-h>"] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
-					end
-				end, { "i", "s" }),
 			}),
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "luasnip" },
 				{ name = "buffer" },
 				{ name = "vsnip" },
 				{ name = "emoji" },
-			},
-			---@diagnostic disable-next-line: missing-fields
-			formatting = {
-				format = lspkind.cmp_format({
-					mode = "symbol_text",
-					maxwidth = 70,
-					show_labelDetails = true,
-					ellipsis_char = "...",
-				}),
-			},
-		})
-
-		vim.diagnostic.config({
-			-- update_in_insert = true,
-			float = {
-				focusable = false,
-				style = "minimal",
-				border = "rounded",
-				---@diagnostic disable-next-line: assign-type-mismatch
-				source = "always",
-				header = "",
-				prefix = "",
 			},
 		})
 	end,
