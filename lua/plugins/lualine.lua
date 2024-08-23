@@ -18,30 +18,32 @@ return {
 				},
 			},
 			sections = {
-				lualine_c = { { "filename" }, { maximize_status } },
+				lualine_c = { "filename", { maximize_status } },
 				lualine_x = {
-         -- stylua: ignore
-        {
-          function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-          color = { fg = "#ff9e64" },
-        },
-         -- stylua: ignore
-        {
-          function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = { fg = "#ff9e64" },
-        },
-          -- stylua: ignore
-        {
-          function() return "  " .. require("dap").status() end,
-          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-          color = { fg = "#ff9e64" },
-        },
-					{ "encoding" },
-					{ "fileformat" },
+			      -- stylua: ignore
+			     -- {
+			     --   function() return require("noice").api.status.command.get() end,
+			     --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+			     --   color = { fg = "#ff9e64" },
+			     -- },
+			      -- stylua: ignore
+			     {
+			       function() return require("noice").api.status.mode.get() end,
+			       cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+			       color = { fg = "#ff9e64" },
+			     },
+			       -- stylua: ignore
+			     {
+			       function() return "  " .. require("dap").status() end,
+			       cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+			       color = { fg = "#ff9e64" },
+			     },
+					-- { "tabs" },
+					-- { "encoding" },
+					-- { "fileformat" },
 					{ "filetype" },
 				},
+				lualine_y = { "progress" },
 				lualine_z = {
 					{
 						lazy_status.updates,
