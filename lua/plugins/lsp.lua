@@ -136,7 +136,7 @@ return {
 			--
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
-			tsserver = {
+			ts_ls = {
 				settings = {
 					typescript = {
 						inlayHints = {
@@ -284,6 +284,11 @@ return {
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
+					--TODO: remove temporary fix for tsserver renamed breaking change.
+					-- if server_name == "tsserver" then
+					-- 	server_name = "ts_ls"
+					-- end
+
 					local server = servers[server_name] or {}
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
