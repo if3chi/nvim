@@ -1,13 +1,24 @@
 # 💤 If3chi Nvim Config
 
-
 Neovim's configurations are located under the following paths, depending on your OS:
 
-| OS | PATH |
-| :- | :--- |
-| Linux, MacOS | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
-| Windows (cmd)| `%userprofile%\AppData\Local\nvim\` |
-| Windows (powershell)| `$env:USERPROFILE\AppData\Local\nvim\` |
+| OS                   | PATH                                      |
+| :------------------- | :---------------------------------------- |
+| Linux, MacOS         | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
+| Windows (cmd)        | `%userprofile%\AppData\Local\nvim\`       |
+| Windows (powershell) | `$env:USERPROFILE\AppData\Local\nvim\`    |
+
+- Make a backup of your current Neovim files:
+
+  ```sh
+  # required
+  mv ~/.config/nvim{,.bak}
+
+  # optional but recommended
+  mv ~/.local/share/nvim{,.bak}
+  mv ~/.local/state/nvim{,.bak}
+  mv ~/.cache/nvim{,.bak}
+  ```
 
 #### Clone the repo
 
