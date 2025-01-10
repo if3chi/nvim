@@ -11,6 +11,7 @@ return {
 		-- used for completion, annotations and signatures of Neovim apis
 		{ "folke/neodev.nvim", opts = {} },
 		"hrsh7th/cmp-nvim-lsp",
+		{ "nvim-java/nvim-java" },
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
@@ -234,7 +235,10 @@ return {
 					},
 				},
 			},
+			jdtls = {},
 		}
+
+		require("java").setup()
 
 		-- Ensure the servers and tools above are installed
 		--  To check the current status of installed tools and/or manually install
